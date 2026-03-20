@@ -1,0 +1,42 @@
+server:
+  port: 8082
+spring:
+  profiles:
+    active: default
+  application:
+    name: products
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8070/eureka/
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      probes:
+        enabled: true   # enables liveness & readiness
+      show-details: always
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+info:
+  app:
+    name: Product Service
+    description: Product microservice with actuator endpoints
+    version: 1.0.0
+data:
+  info: dev profile productservice
